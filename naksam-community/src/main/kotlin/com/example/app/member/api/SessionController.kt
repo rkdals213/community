@@ -1,4 +1,4 @@
-package com.example.app.member.controller
+package com.example.app.member.api
 
 import com.example.app.member.dto.LoginForm
 import com.example.app.member.service.SessionService
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-
-const val EXPIRATION = 60 * 60 * 24
 
 @RestController
 @RequestMapping("/session")

@@ -11,15 +11,12 @@ class Community(
     @ManyToOne(fetch = FetchType.LAZY)
     val category: Category,
 
-    @Embedded
     val communityMembers: CommunityMembers,
 
     val maxMemberCount: Int,
 
-    @Embedded
     var location: Location,
 
-    @Embedded
     val communityImages: CommunityImages,
 
     @Lob
