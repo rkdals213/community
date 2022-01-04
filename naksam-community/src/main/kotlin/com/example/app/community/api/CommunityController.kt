@@ -33,4 +33,10 @@ class CommunityController(
     fun createCommunity(@JwtClaim member: Member, @RequestBody createCommunityRequest: CreateCommunityRequest) : ResponseEntity<Any> {
         return ResponseEntity.ok(communityService.createCommunity(member, createCommunityRequest))
     }
+
+    @Authenticated
+    @PostMapping("/join/{communityId}")
+    fun joinCommunity(@JwtClaim member: Member, @PathVariable communityId: Long) : ResponseEntity<Any> {
+        return ResponseEntity.ok(communityService.joinCommunity(member, communityId))
+    }
 }

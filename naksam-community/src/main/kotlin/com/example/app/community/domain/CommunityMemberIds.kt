@@ -17,4 +17,8 @@ class CommunityMemberIds(
     fun add(memberId: Long) {
         memberIds.add(memberId)
     }
+
+    fun notContains(memberId: Long): Boolean =
+        memberIds.contains(memberId)
+            .not()
 }

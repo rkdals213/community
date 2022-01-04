@@ -24,4 +24,10 @@ class CommunityService(
         return communityRepository.save(community)
             .id
     }
+
+    fun joinCommunity(member: Member, communityId: Long) {
+        val community = communityRepository.findByIdWithCheck(communityId)
+
+        community.join(member.id)
+    }
 }

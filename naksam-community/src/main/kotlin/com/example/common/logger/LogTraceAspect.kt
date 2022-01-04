@@ -11,7 +11,7 @@ class LogTraceAspect(private val logTrace: LogTrace) {
 
     @Around("execution(* com.example.app..*(..)) || execution(* org.springframework.data.jpa.repository.JpaRepository.*(..))")
     @Throws(Throwable::class)
-    fun execute(joinPoint: ProceedingJoinPoint): Any {
+    fun execute(joinPoint: ProceedingJoinPoint): Any? {
         var status: TraceStatus? = null
         return try {
             val message = joinPoint.signature.toShortString()
