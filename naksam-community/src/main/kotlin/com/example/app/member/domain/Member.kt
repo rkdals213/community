@@ -59,6 +59,7 @@ class Member(
 
     fun changePhoneNumber(phoneNumber: String) {
         information = information.copy(phoneNumber = phoneNumber)
+        check(true)
     }
 
     private fun identify(value: Boolean, lazyMessage: () -> Any = {}) {

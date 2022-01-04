@@ -3,7 +3,7 @@ package com.example.app.community.dto
 import com.example.app.community.domain.Category
 import com.example.app.community.domain.Community
 import com.example.app.community.domain.CommunityImages
-import com.example.app.community.domain.CommunityMembers
+import com.example.app.community.domain.CommunityMemberIds
 import com.example.common.infra.Location
 
 data class CommunityCondition(
@@ -23,7 +23,7 @@ data class CreateCommunityRequest(
         return Community(
             name = name,
             category = category,
-            communityMembers = CommunityMembers(),
+            communityMemberIds = CommunityMemberIds(),
             maxMemberCount = maxMemberCount,
             location = location,
             communityImages = communityImages,

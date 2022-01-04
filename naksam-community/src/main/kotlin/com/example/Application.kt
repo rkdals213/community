@@ -3,7 +3,7 @@ package com.example
 import com.example.app.community.domain.Category
 import com.example.app.community.domain.Community
 import com.example.app.community.domain.CommunityImages
-import com.example.app.community.domain.CommunityMembers
+import com.example.app.community.domain.CommunityMemberIds
 import com.example.app.member.domain.Member
 import com.example.app.member.domain.MemberInformation
 import com.example.app.member.domain.Password
@@ -56,7 +56,7 @@ class InitService(
                     val community = Community(
                         name = "community$i",
                         category = category,
-                        communityMembers = CommunityMembers(),
+                        communityMemberIds = CommunityMemberIds(),
                         maxMemberCount = 1,
                         location = Location(
                             "state",

@@ -1,9 +1,7 @@
 package com.example.app.community.service
 
-import com.example.app.community.domain.CommunityMember
 import com.example.app.community.dto.CreateCommunityRequest
 import com.example.app.community.repository.CategoryRepository
-import com.example.app.community.repository.CommunityMemberRepository
 import com.example.app.community.repository.CommunityRepository
 import com.example.app.community.repository.findByIdWithCheck
 import com.example.app.member.domain.Member
@@ -14,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class CommunityService(
     private val communityRepository: CommunityRepository,
-    private val communityMemberRepository: CommunityMemberRepository,
     private val categoryRepository: CategoryRepository
 ) {
     fun createCommunity(member: Member, createCommunityRequest: CreateCommunityRequest): Long {
@@ -22,10 +19,7 @@ class CommunityService(
 
         val community = createCommunityRequest.toEntity(category)
 
-        val communityMember = CommunityMember(community, member)
-        communityMemberRepository.save(communityMember)
-
-        community.join(communityMember)
+        community.join(member.id)
 
         return communityRepository.save(community)
             .id

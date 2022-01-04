@@ -17,15 +17,15 @@ private class PasswordDeserializer : JsonDeserializer<Password>() {
 
 private class PasswordSerializer : JsonSerializer<Password>() {
     override fun serialize(password: Password, gen: JsonGenerator, serializers: SerializerProvider) {
-        gen.writeString(password.value)
+        gen.writeString(password.password)
     }
 }
 
 @JsonSerialize(using = PasswordSerializer::class)
 @JsonDeserialize(using = PasswordDeserializer::class)
 @Embeddable
-data class Password(var value: String) {
+class Password(var password: String) {
     init {
-        value = sha256Encrypt(value)
+        password = sha256Encrypt(password)
     }
 }

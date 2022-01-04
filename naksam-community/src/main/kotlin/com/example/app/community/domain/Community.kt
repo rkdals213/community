@@ -2,7 +2,10 @@ package com.example.app.community.domain
 
 import com.example.common.infra.BaseEntity
 import com.example.common.infra.Location
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.Lob
+import javax.persistence.ManyToOne
 
 @Entity
 class Community(
@@ -11,7 +14,7 @@ class Community(
     @ManyToOne(fetch = FetchType.LAZY)
     val category: Category,
 
-    val communityMembers: CommunityMembers,
+    val communityMemberIds: CommunityMemberIds,
 
     val maxMemberCount: Int,
 
@@ -25,10 +28,10 @@ class Community(
     id: Long = 0L
 ) : BaseEntity(id) {
 
-    fun ableToJoin() = communityMembers.count() < maxMemberCount
+    fun ableToJoin() = communityMemberIds.count() < maxMemberCount
 
-    fun join(communityMember: CommunityMember) {
+    fun join(memberId: Long) {
         ableToJoin()
-        communityMembers.add(communityMember)
+        communityMemberIds.add(memberId)
     }
 }
