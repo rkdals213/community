@@ -29,6 +29,5 @@ data class CreateCommunityRequest(
             communityImages = communityImages,
             description = description
         )
-
     }
 }
