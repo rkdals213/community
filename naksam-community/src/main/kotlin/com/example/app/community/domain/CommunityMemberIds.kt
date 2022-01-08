@@ -21,14 +21,12 @@ class CommunityMemberIds(
         memberIds.add(memberId)
     }
 
-    fun ableToJoin(memberId: Long) = memberIds.count() < maxMemberCount && notContains(memberId)
-
-    private fun notContains(memberId: Long): Boolean =
-        memberIds.contains(memberId)
-            .not()
+    fun ableToJoin(memberId: Long) = memberIds.count() < maxMemberCount && memberIds.notContains(memberId)
 
     fun withdrawal(memberId: Long) {
         check(memberIds.contains(memberId)) { "가입한 회원이 아닙니다" }
         memberIds.remove(memberId)
     }
+
+    private fun MutableSet<Long>.notContains(value: Long) = contains(value).not()
 }
