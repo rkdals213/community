@@ -23,12 +23,7 @@ class SessionController(
 ) {
 
     @PostMapping("/login")
-    fun login(
-        @RequestBody
-        loginForm: LoginForm,
-        req: HttpServletRequest,
-        res: HttpServletResponse
-    ): ResponseEntity<Any> {
+    fun login(@RequestBody loginForm: LoginForm, req: HttpServletRequest, res: HttpServletResponse): ResponseEntity<Any> {
         val payload = sessionService.login(loginForm)
         val token = jwtServiceImpl.create(payload)
 

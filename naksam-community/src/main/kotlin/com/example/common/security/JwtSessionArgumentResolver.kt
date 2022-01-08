@@ -39,6 +39,6 @@ class JwtSessionArgumentResolver(
         val email: String = JsonPath.parse(claim)
             .read(path, paramType) as String
 
-        return memberRepository.findByEmail(email) ?: throw NoSuchElementException("회원정보가 존재하지 않습니다")
+        return memberRepository.findByEmail(email)
     }
 }

@@ -19,7 +19,7 @@ class SessionService(
 ) {
 
     fun login(loginForm: LoginForm): Payload {
-        val member = memberRepository.findByEmail(loginForm.email) ?: throw NoSuchElementException("멤버가 존재하지 않습니다")
+        val member = memberRepository.findByEmail(loginForm.email)
         member.authenticate(Password(loginForm.password))
         return Payload(
             LocalDateTime.now()

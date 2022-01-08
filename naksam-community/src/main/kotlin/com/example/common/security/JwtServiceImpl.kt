@@ -47,7 +47,10 @@ class JwtServiceImpl : JwtService {
 
     private fun checkJwt(token: String): Boolean {
         return try {
-            val claims: Jws<Claims> = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token)
+            val claims: Jws<Claims> = Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(token)
             val expiration = claims.body.expiration
             System.currentTimeMillis() <= expiration.time
         } catch (e: Exception) {
