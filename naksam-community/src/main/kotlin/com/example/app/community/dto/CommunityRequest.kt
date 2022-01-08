@@ -23,8 +23,7 @@ data class CreateCommunityRequest(
         return Community(
             name = name,
             category = category,
-            communityMemberIds = CommunityMemberIds(),
-            maxMemberCount = maxMemberCount,
+            communityMemberIds = CommunityMemberIds(maxMemberCount),
             location = location,
             communityImages = communityImages,
             description = description

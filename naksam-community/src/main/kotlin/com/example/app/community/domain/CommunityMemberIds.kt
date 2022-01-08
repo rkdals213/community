@@ -7,6 +7,8 @@ import javax.persistence.Embeddable
 
 @Embeddable
 class CommunityMemberIds(
+    val maxMemberCount: Int,
+
     @CollectionTable(name = "community_member_ids")
     @ElementCollection
     @Column(name = "member_id")
@@ -15,10 +17,18 @@ class CommunityMemberIds(
     fun count() = memberIds.size
 
     fun add(memberId: Long) {
+        check(ableToJoin(memberId)) { "이미 가입했거나 최대 가입 가능한 인원을 초과했습니다" }
         memberIds.add(memberId)
     }
 
-    fun notContains(memberId: Long): Boolean =
+    fun ableToJoin(memberId: Long) = memberIds.count() < maxMemberCount && notContains(memberId)
+
+    private fun notContains(memberId: Long): Boolean =
         memberIds.contains(memberId)
             .not()
+
+    fun withdrawal(memberId: Long) {
+        check(memberIds.contains(memberId)) { "가입한 회원이 아닙니다" }
+        memberIds.remove(memberId)
+    }
 }

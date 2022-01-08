@@ -56,8 +56,7 @@ class InitService(
                     val community = Community(
                         name = "community$i",
                         category = category,
-                        communityMemberIds = CommunityMemberIds(),
-                        maxMemberCount = 1,
+                        communityMemberIds = CommunityMemberIds(1),
                         location = Location(
                             "state",
                             "city"

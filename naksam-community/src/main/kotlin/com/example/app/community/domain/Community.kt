@@ -14,8 +14,6 @@ class Community(
     @Embedded
     val communityMemberIds: CommunityMemberIds,
 
-    val maxMemberCount: Int,
-
     var location: Location,
 
     val communityImages: CommunityImages,
@@ -27,10 +25,10 @@ class Community(
 ) : BaseEntity(id) {
 
     fun join(memberId: Long) {
-        check(ableToJoin(memberId)) { "이미 가입했거나 최대 가입 가능한 인원을 초과했습니다" }
         communityMemberIds.add(memberId)
     }
 
-    fun ableToJoin(memberId: Long) =
-        communityMemberIds.count() < maxMemberCount && communityMemberIds.notContains(memberId)
+    fun withdrawal(memberId: Long) {
+        communityMemberIds.withdrawal(memberId)
+    }
 }

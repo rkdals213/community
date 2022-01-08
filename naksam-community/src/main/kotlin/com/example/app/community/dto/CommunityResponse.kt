@@ -16,7 +16,8 @@ data class CommunityResponse(
     constructor(community: Community) : this(
         community.id,
         CategoryResponse(community.category),
-        community.maxMemberCount,
+        community.communityMemberIds
+            .maxMemberCount,
         community.location,
         community.communityImages,
         community.description

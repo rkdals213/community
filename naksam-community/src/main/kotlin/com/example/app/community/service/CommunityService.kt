@@ -30,4 +30,10 @@ class CommunityService(
 
         community.join(member.id)
     }
+
+    fun withdrawalCommunity(member: Member, communityId: Long) {
+        val community = communityRepository.findByIdWithCheck(communityId)
+
+        community.withdrawal(member.id)
+    }
 }

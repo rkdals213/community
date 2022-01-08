@@ -10,6 +10,7 @@ import com.example.common.security.JwtClaim
 import org.springframework.data.domain.Pageable
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import kotlin.math.acosh
 
 @RestController
 @RequestMapping("/community")
@@ -38,5 +39,11 @@ class CommunityController(
     @PostMapping("/join/{communityId}")
     fun joinCommunity(@JwtClaim member: Member, @PathVariable communityId: Long) : ResponseEntity<Any> {
         return ResponseEntity.ok(communityService.joinCommunity(member, communityId))
+    }
+
+    @Authenticated
+    @PutMapping("/withdrawal/{communityId}")
+    fun withdrawalCommunity(@JwtClaim member: Member, @PathVariable communityId: Long) : ResponseEntity<Any> {
+        return ResponseEntity.ok(communityService.withdrawalCommunity(member, communityId))
     }
 }
