@@ -7,11 +7,13 @@ import com.example.app.community.domain.CommunityMemberIds
 import com.example.app.member.domain.Member
 import com.example.app.member.domain.MemberInformation
 import com.example.app.member.domain.Password
+import com.example.app.wallet.domain.Wallet
 import com.example.common.infra.Location
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
+import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.Month
 import javax.annotation.PostConstruct
@@ -66,6 +68,11 @@ class InitService(
                     )
                     em.persist(community)
                 }
+
+                val memberWallet = Wallet("asfwq", BigDecimal.valueOf(10_000), Wallet.TargetType.MEMBER, 1, "test")
+                val communityWallet = Wallet("asfwq", BigDecimal.valueOf(10_000), Wallet.TargetType.COMMUNITY, 1, "community1")
+                em.persist(memberWallet)
+                em.persist(communityWallet)
             }
         }
     }
