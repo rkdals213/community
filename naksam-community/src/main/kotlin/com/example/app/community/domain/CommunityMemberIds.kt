@@ -26,5 +26,7 @@ class CommunityMemberIds(
         memberIds.remove(memberId)
     }
 
+    fun memberCount(): Int = memberIds.size
+
     private fun MutableSet<Long>.notContains(value: Long) = contains(value).not()
 }

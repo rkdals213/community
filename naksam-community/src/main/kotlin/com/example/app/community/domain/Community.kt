@@ -31,4 +31,6 @@ class Community(
     fun withdrawal(memberId: Long) {
         communityMemberIds.withdrawal(memberId)
     }
+
+    fun memberCount() = communityMemberIds.memberCount()
 }

@@ -9,6 +9,7 @@ data class CommunityResponse(
     var id: Long,
     var category: CategoryResponse,
     var maxMemberCount: Int,
+    var currentMemberCount: Int,
     var location: Location,
     val communityImages: CommunityImages,
     val description: String
@@ -18,6 +19,9 @@ data class CommunityResponse(
         CategoryResponse(community.category),
         community.communityMemberIds
             .maxMemberCount,
+        community.communityMemberIds
+            .memberIds
+            .size,
         community.location,
         community.communityImages,
         community.description
