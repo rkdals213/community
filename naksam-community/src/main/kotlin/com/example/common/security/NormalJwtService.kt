@@ -14,7 +14,7 @@ import java.time.ZoneOffset
 import java.util.*
 
 @Component
-class JwtServiceImpl : JwtService {
+class NormalJwtService : JwtService {
     private val jsonMapper = ObjectMapper()
     private val secretKey: Key
         get() = try {

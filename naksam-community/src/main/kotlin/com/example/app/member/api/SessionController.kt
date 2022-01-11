@@ -6,7 +6,7 @@ import com.example.common.config.WebConfig.Companion.EXPIRATION
 import com.example.common.config.WebConfig.Companion.JWT_COOKIE_NAME
 import com.example.common.security.CookieConfig
 import com.example.common.security.HttpSupport
-import com.example.common.security.JwtServiceImpl
+import com.example.common.security.NormalJwtService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -19,13 +19,13 @@ import javax.servlet.http.HttpServletResponse
 @RequestMapping("/session")
 class SessionController(
     private val sessionService: SessionService,
-    private val jwtServiceImpl: JwtServiceImpl
+    private val normalJwtService: NormalJwtService
 ) {
 
     @PostMapping("/login")
     fun login(@RequestBody loginForm: LoginForm, req: HttpServletRequest, res: HttpServletResponse): ResponseEntity<Any> {
         val payload = sessionService.login(loginForm)
-        val token = jwtServiceImpl.create(payload)
+        val token = normalJwtService.create(payload)
 
         val cookie = HttpSupport.createCookie(
             CookieConfig(
