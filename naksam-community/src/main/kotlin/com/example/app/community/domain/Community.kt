@@ -1,5 +1,6 @@
 package com.example.app.community.domain
 
+import com.example.app.member.domain.Member
 import com.example.common.infra.BaseEntity
 import com.example.common.infra.Location
 import javax.persistence.*
@@ -33,4 +34,6 @@ class Community(
     }
 
     fun memberCount() = communityMemberIds.memberCount()
+
+    fun memberInCommunity(member: Member) = communityMemberIds.contains(member.id)
 }

@@ -3,6 +3,7 @@ package com.example.app.community.dto
 import com.example.app.community.domain.Category
 import com.example.app.community.domain.Community
 import com.example.app.community.domain.CommunityImages
+import com.example.app.member.domain.Member
 import com.example.common.infra.Location
 
 data class CommunityResponse(

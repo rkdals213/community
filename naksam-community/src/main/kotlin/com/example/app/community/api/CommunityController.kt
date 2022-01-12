@@ -10,7 +10,6 @@ import com.example.common.security.JwtClaim
 import org.springframework.data.domain.Pageable
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import kotlin.math.acosh
 
 @RestController
 @RequestMapping("/community")
@@ -20,30 +19,36 @@ class CommunityController(
 ) {
 
     @GetMapping
-    fun findByCondition(communityCondition: CommunityCondition, pageable: Pageable) : ResponseEntity<Any> {
+    fun findByCondition(communityCondition: CommunityCondition, pageable: Pageable): ResponseEntity<Any> {
         return ResponseEntity.ok(communityQueryService.findByCondition(communityCondition, pageable))
     }
 
     @GetMapping("/{communityId}")
-    fun findDetail(@PathVariable communityId: Long) : ResponseEntity<Any> {
+    fun findDetail(@PathVariable communityId: Long): ResponseEntity<Any> {
         return ResponseEntity.ok(communityQueryService.findDetail(communityId))
     }
 
     @Authenticated
+    @GetMapping("/{communityId}/members")
+    fun findMembersOfCommunity(@JwtClaim member: Member, @PathVariable communityId: Long): ResponseEntity<Any> {
+        return ResponseEntity.ok(communityQueryService.membersOfCommunity(member, communityId))
+    }
+
+    @Authenticated
     @PostMapping
-    fun createCommunity(@JwtClaim member: Member, @RequestBody createCommunityRequest: CreateCommunityRequest) : ResponseEntity<Any> {
+    fun createCommunity(@JwtClaim member: Member, @RequestBody createCommunityRequest: CreateCommunityRequest): ResponseEntity<Any> {
         return ResponseEntity.ok(communityService.createCommunity(member, createCommunityRequest))
     }
 
     @Authenticated
     @PostMapping("/join/{communityId}")
-    fun joinCommunity(@JwtClaim member: Member, @PathVariable communityId: Long) : ResponseEntity<Any> {
+    fun joinCommunity(@JwtClaim member: Member, @PathVariable communityId: Long): ResponseEntity<Any> {
         return ResponseEntity.ok(communityService.joinCommunity(member, communityId))
     }
 
     @Authenticated
     @PutMapping("/withdrawal/{communityId}")
-    fun withdrawalCommunity(@JwtClaim member: Member, @PathVariable communityId: Long) : ResponseEntity<Any> {
+    fun withdrawalCommunity(@JwtClaim member: Member, @PathVariable communityId: Long): ResponseEntity<Any> {
         return ResponseEntity.ok(communityService.withdrawalCommunity(member, communityId))
     }
 }
