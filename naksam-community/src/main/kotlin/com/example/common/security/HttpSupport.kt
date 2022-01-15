@@ -13,12 +13,13 @@ class HttpSupport {
         fun createCookie(cookieConfig: CookieConfig) = cookieConfig.create()
 
         fun removeCookie(cookie: Cookie, httpServletResponse: HttpServletResponse) {
-            CookieConfig(
+            val removed = CookieConfig(
                 name = cookie.name,
                 value = "",
                 expires = 10,
                 secure = cookie.secure
-            )
+            ).create()
+            httpServletResponse.addCookie(removed)
         }
     }
 }
