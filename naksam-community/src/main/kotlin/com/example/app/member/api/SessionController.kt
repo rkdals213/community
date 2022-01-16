@@ -53,7 +53,6 @@ class SessionController(
     fun logout(@JwtClaim member: Member, req: HttpServletRequest, res: HttpServletResponse): ResponseEntity<Any> {
         val cookie = HttpSupport.getCookie(req, JWT_COOKIE_NAME)
         HttpSupport.removeCookie(cookie, res)
-
         return ResponseEntity.ok()
             .build()
     }
